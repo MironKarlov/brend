@@ -196,6 +196,157 @@
             border-top: 1px solid #333;
         }
         
+        /* Стили для модального окна оплаты */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: rgba(30, 30, 46, 0.95);
+            border-radius: 12px;
+            padding: 2rem;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1rem;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            color: #1e90ff;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            color: #aaa;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .close-btn:hover {
+            color: white;
+        }
+        
+        .payment-info {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+        }
+        
+        .payment-info p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .payment-amount {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1e90ff;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #aaa;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.7rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            color: white;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #1e90ff;
+        }
+        
+        .pay-btn {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background: #1e90ff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 1rem;
+        }
+        
+        .pay-btn:hover {
+            background: #1c86ee;
+        }
+        
+        .vk-pay-btn {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            background: #4a76a8;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        
+        .vk-pay-btn:hover {
+            background: #3d638f;
+        }
+        
+        .success-message {
+            display: none;
+            background: rgba(32, 201, 151, 0.2);
+            border: 1px solid #20c997;
+            color: #20c997;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .error-message {
+            display: none;
+            background: rgba(220, 53, 69, 0.2);
+            border: 1px solid #dc3545;
+            color: #dc3545;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
         @media (max-width: 768px) {
             .privilege-grid {
                 grid-template-columns: 1fr;
@@ -226,7 +377,7 @@
                     <li>Увеличенный лимит домов</li>
                 </ul>
                 <div class="price">20 рублей</div>
-                <button class="buy-btn" onclick="showPaymentForm('HERO', 20)">Купить привилегию</button>
+                <button class="buy-btn" onclick="openPaymentModal('HERO', 20)">Купить привилегию</button>
             </div>
             
             <!-- Titan -->
@@ -240,7 +391,7 @@
                     <li>Возможность телепортации к игрокам</li>
                 </ul>
                 <div class="price">30 рублей</div>
-                <button class="buy-btn" onclick="showPaymentForm('TITAN', 30)">Купить привилегию</button>
+                <button class="buy-btn" onclick="openPaymentModal('TITAN', 30)">Купить привилегию</button>
             </div>
             
             <!-- Avenger -->
@@ -254,7 +405,7 @@
                     <li>Возможность починки предметов</li>
                 </ul>
                 <div class="price">40 рублей</div>
-                <button class="buy-btn" onclick="showPaymentForm('AVENGER', 40)">Купить привилегию</button>
+                <button class="buy-btn" onclick="openPaymentModal('AVENGER', 40)">Купить привилегию</button>
             </div>
             
             <!-- Overlord -->
@@ -268,7 +419,7 @@
                     <li>Возможность исцеления</li>
                 </ul>
                 <div class="price">50 рублей</div>
-                <button class="buy-btn" onclick="showPaymentForm('OVERLORD', 50)">Купить привилегию</button>
+                <button class="buy-btn" onclick="openPaymentModal('OVERLORD', 50)">Купить привилегию</button>
             </div>
             
             <!-- Magister -->
@@ -282,7 +433,7 @@
                     <li>Возможность изменения погоды</li>
                 </ul>
                 <div class="price">60 рублей</div>
-                <button class="buy-btn" onclick="showPaymentForm('MAGISTER', 60)">Купить привилегию</button>
+                <button class="buy-btn" onclick="openPaymentModal('MAGISTER', 60)">Купить привилегию</button>
             </div>
             
             <!-- Imperator -->
@@ -296,7 +447,7 @@
                     <li>Возможность банить игроков</li>
                 </ul>
                 <div class="price">90 рублей</div>
-                <button class="buy-btn" onclick="showPaymentForm('IMPERATOR', 90)">Купить привилегию</button>
+                <button class="buy-btn" onclick="openPaymentModal('IMPERATOR', 90)">Купить привилегию</button>
             </div>
             
             <!-- Dragon -->
@@ -310,7 +461,7 @@
                     <li>Возможность выдавать варны</li>
                 </ul>
                 <div class="price">120 рублей</div>
-                <button class="buy-btn" onclick="showPaymentForm('DRAGON', 120)">Купить привилегию</button>
+                <button class="buy-btn" onclick="openPaymentModal('DRAGON', 120)">Купить привилегию</button>
             </div>
             
             <!-- Cobra -->
@@ -324,66 +475,86 @@
                     <li>Возможность телепортации к любому игроку</li>
                 </ul>
                 <div class="price">140 рублей</div>
-                <button class="buy-btn" onclick="showPaymentForm('COBRA', 140)">Купить привилегию</button>
+                <button class="buy-btn" onclick="openPaymentModal('COBRA', 140)">Купить привилегию</button>
             </div>
         </div>
-        
-        <!-- Форма оплаты -->
-        <div id="payment-form" style="display: none; margin-top: 3rem; background: rgba(30, 30, 46, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1);">
-            <h2 style="text-align: center; margin-bottom: 1.5rem; color: #1e90ff;">Оплата привилегии <span id="privilege-name"></span></h2>
+    </div>
+    
+    <!-- Модальное окно оплаты -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Оплата привилегии</h2>
+                <button class="close-btn" onclick="closePaymentModal()">&times;</button>
+            </div>
             
-            <form method="POST" action="https://securepayments.sberbank.ru/payment/rest/register.do">
-                <input type="hidden" name="userName" value="ВАШ_ЛОГИН_СБЕРБАНКА">
-                <input type="hidden" name="password" value="ВАШ_ПАРОЛЬ_СБЕРБАНКА">
-                <input type="hidden" name="orderNumber" value="ORDER12345">
-                <input type="hidden" name="returnUrl" value="https://ваш-сайт.ru/success">
-                <input type="hidden" name="failUrl" value="https://ваш-сайт.ru/fail">
-                
-                <div style="margin-bottom: 1rem;">
-                    <label for="amount">Сумма платежа:</label>
-                    <input type="number" id="amount" name="amount" value="100" min="1" required style="width: 100%; padding: 0.5rem; margin-top: 0.5rem; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 4px; color: white;">
+            <div class="payment-info">
+                <p>Вы покупаете: <strong id="selectedPrivilege">HERO</strong></p>
+                <p class="payment-amount">Сумма: <span id="paymentAmount">20</span> рублей</p>
+            </div>
+            
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="playerNickname">Никнейм в игре *</label>
+                    <input type="text" id="playerNickname" placeholder="Введите ваш ник в Minecraft" required>
+                    <small style="color: #aaa;">Укажите ник, на который нужно выдать привилегию</small>
                 </div>
                 
-                <div style="margin-bottom: 1rem;">
-                    <label for="description">Описание платежа:</label>
-                    <input type="text" id="description" name="description" value="Привилегия HERO" readonly style="width: 100%; padding: 0.5rem; margin-top: 0.5rem; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 4px; color: white;">
+                <div class="form-group">
+                    <label for="playerEmail">Email для уведомлений *</label>
+                    <input type="email" id="playerEmail" placeholder="your@email.com" required>
                 </div>
                 
-                <div style="margin-bottom: 1rem;">
-                    <label for="client_email">Email для уведомлений:</label>
-                    <input type="email" id="client_email" name="client_email" required style="width: 100%; padding: 0.5rem; margin-top: 0.5rem; background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 4px; color: white;">
+                <button type="button" class="vk-pay-btn" onclick="processVKPayment()">
+                    Оплатить через VK Pay
+                </button>
+                
+                <div class="form-group" style="text-align: center; margin: 1rem 0;">
+                    <span style="color: #aaa;">или</span>
                 </div>
                 
-                <button type="submit" style="display: block; width: 100%; padding: 0.8rem; background: #1e90ff; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; transition: background 0.3s;">Оплатить картой</button>
+                <button type="button" class="pay-btn" onclick="processCardPayment()">
+                    Оплатить банковской картой
+                </button>
             </form>
             
-            <p style="text-align: center; margin-top: 1rem; color: #aaa; font-size: 0.9rem;">
-                После оплаты пришлите чек в нашу группу ВК или Discord для активации привилегии
-            </p>
+            <div class="success-message" id="successMessage">
+                ✅ Оплата прошла успешно! Привилегия будет выдана в течение 5 минут
+            </div>
             
-            <button onclick="hidePaymentForm()" style="display: block; width: 100%; padding: 0.5rem; margin-top: 1rem; background: transparent; color: #aaa; border: 1px solid #aaa; border-radius: 6px; cursor: pointer;">Отмена</button>
+            <div class="error-message" id="errorMessage">
+                ❌ Произошла ошибка при оплате. Попробуйте еще раз
+            </div>
+            
+            <p style="text-align: center; margin-top: 1rem; color: #aaa; font-size: 0.9rem;">
+                После оплаты привилегия автоматически выдается указанному нику
+            </p>
         </div>
     </div>
     
     <footer>
         <p>© 2023 Атернос Сервер. Все права защищены.</p>
-        <p style="margin-top: 0.5rem; color: #777;">По всем вопросам обращайтесь в нашу группу ВК или Discord</p>
+        <p style="margin-top: 0.5rem; color: #777;">По всем вопросам обращайтесь в нашу группу ВК</p>
     </footer>
     
     <script>
-        function showPaymentForm(privilegeName, price) {
-            document.getElementById('privilege-name').textContent = privilegeName;
-            document.getElementById('amount').value = price * 100; // Сумма в копейках для Сбера
-            document.getElementById('description').value = 'Привилегия ' + privilegeName;
-            document.getElementById('payment-form').style.display = 'block';
+        let selectedPrivilege = '';
+        let selectedPrice = 0;
+        
+        function openPaymentModal(privilege, price) {
+            selectedPrivilege = privilege;
+            selectedPrice = price;
             
-            // Прокрутка к форме оплаты
-            document.getElementById('payment-form').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('selectedPrivilege').textContent = privilege;
+            document.getElementById('paymentAmount').textContent = price;
+            document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('errorMessage').style.display = 'none';
+            
+            document.getElementById('paymentModal').style.display = 'flex';
         }
         
-        function hidePaymentForm() {
-            document.getElementById('payment-form').style.display = 'none';
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
         }
-    </script>
-</body>
-</html>
+        
+       
