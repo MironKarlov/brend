@@ -188,99 +188,55 @@
             opacity: 0.9;
         }
         
-        footer {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
-            background: rgba(0, 0, 0, 0.8);
-            border-top: 1px solid #333;
-        }
-        
-        /* Стили для модального окна оплаты */
-        .modal {
+        /* Стили для страницы оплаты */
+        .payment-page {
             display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .modal-content {
-            background: rgba(30, 30, 46, 0.95);
+            max-width: 500px;
+            margin: 2rem auto;
+            background: rgba(30, 30, 46, 0.7);
             border-radius: 12px;
             padding: 2rem;
-            width: 90%;
-            max-width: 500px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
+        .payment-header {
+            text-align: center;
+            margin-bottom: 2rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 1rem;
         }
         
-        .modal-title {
-            font-size: 1.5rem;
+        .payment-title {
+            font-size: 1.8rem;
             color: #1e90ff;
-        }
-        
-        .close-btn {
-            background: none;
-            border: none;
-            color: #aaa;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-        
-        .close-btn:hover {
-            color: white;
-        }
-        
-        .payment-info {
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 6px;
-        }
-        
-        .payment-info p {
             margin-bottom: 0.5rem;
         }
         
         .payment-amount {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            color: #1e90ff;
+            color: #ffd700;
         }
         
         .form-group {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
         
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             color: #aaa;
+            font-weight: bold;
         }
         
         .form-group input {
             width: 100%;
-            padding: 0.7rem;
+            padding: 0.8rem;
             background: rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
+            border-radius: 6px;
             color: white;
+            font-size: 1rem;
         }
         
         .form-group input:focus {
@@ -288,14 +244,67 @@
             border-color: #1e90ff;
         }
         
+        .payment-methods {
+            margin: 2rem 0;
+        }
+        
+        .payment-method {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .payment-method:hover {
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .payment-method.selected {
+            background: rgba(30, 144, 255, 0.2);
+            border-color: #1e90ff;
+        }
+        
+        .method-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .vkpay-icon {
+            background: #4a76a8;
+            color: white;
+        }
+        
+        .card-icon {
+            background: #ff6b35;
+            color: white;
+        }
+        
+        .qiwi-icon {
+            background: #ff8c00;
+            color: white;
+        }
+        
         .pay-btn {
             display: block;
             width: 100%;
-            padding: 0.8rem;
+            padding: 1rem;
             background: #1e90ff;
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
+            font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
             transition: background 0.3s;
@@ -306,45 +315,76 @@
             background: #1c86ee;
         }
         
-        .vk-pay-btn {
+        .back-btn {
             display: block;
             width: 100%;
             padding: 0.8rem;
-            background: #4a76a8;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
+            background: transparent;
+            color: #aaa;
+            border: 1px solid #aaa;
+            border-radius: 8px;
+            font-size: 1rem;
             cursor: pointer;
-            transition: background 0.3s;
-            text-align: center;
+            transition: all 0.3s;
             margin-top: 1rem;
+            text-align: center;
+            text-decoration: none;
         }
         
-        .vk-pay-btn:hover {
-            background: #3d638f;
+        .back-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
         }
         
-        .success-message {
+        .success-page {
             display: none;
-            background: rgba(32, 201, 151, 0.2);
-            border: 1px solid #20c997;
-            color: #20c997;
-            padding: 1rem;
-            border-radius: 6px;
-            margin-top: 1rem;
+            max-width: 500px;
+            margin: 2rem auto;
+            background: rgba(30, 30, 46, 0.7);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
         }
         
-        .error-message {
-            display: none;
-            background: rgba(220, 53, 69, 0.2);
-            border: 1px solid #dc3545;
-            color: #dc3545;
+        .success-icon {
+            font-size: 4rem;
+            color: #32cd32;
+            margin-bottom: 1rem;
+        }
+        
+        .vk-wallet-info {
+            background: rgba(74, 118, 168, 0.2);
+            border: 1px solid #4a76a8;
+            border-radius: 8px;
             padding: 1rem;
-            border-radius: 6px;
-            margin-top: 1rem;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        
+        .instructions {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            text-align: left;
+        }
+        
+        .instructions ol {
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .instructions li {
+            margin-bottom: 0.5rem;
+        }
+        
+        footer {
             text-align: center;
+            padding: 2rem;
+            margin-top: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+            border-top: 1px solid #333;
         }
         
         @media (max-width: 768px) {
@@ -355,206 +395,173 @@
             h1 {
                 font-size: 2rem;
             }
+            
+            .container {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>АТЕРНОС СЕРВЕР</h1>
-        <p class="subtitle">Выберите привилегию для максимального игрового опыта</p>
-    </header>
-    
-    <div class="container">
-        <div class="privilege-grid">
-            <!-- Hero -->
-            <div class="privilege-card hero">
-                <h2 class="privilege-name">HERO</h2>
-                <ul class="privilege-features">
-                    <li>Доступ к команде /fly</li>
-                    <li>Префикс в чате [Hero]</li>
-                    <li>Возможность создать 3 варпа</li>
-                    <li>Доступ к набору Hero Kit</li>
-                    <li>Увеличенный лимит домов</li>
-                </ul>
-                <div class="price">20 рублей</div>
-                <button class="buy-btn" onclick="openPaymentModal('HERO', 20)">Купить привилегию</button>
-            </div>
-            
-            <!-- Titan -->
-            <div class="privilege-card titan">
-                <h2 class="privilege-name">TITAN</h2>
-                <ul class="privilege-features">
-                    <li>Все возможности Hero</li>
-                    <li>Префикс в чате [Titan]</li>
-                    <li>Возможность создать 5 варпов</li>
-                    <li>Доступ к набору Titan Kit</li>
-                    <li>Возможность телепортации к игрокам</li>
-                </ul>
-                <div class="price">30 рублей</div>
-                <button class="buy-btn" onclick="openPaymentModal('TITAN', 30)">Купить привилегию</button>
-            </div>
-            
-            <!-- Avenger -->
-            <div class="privilege-card avenger">
-                <h2 class="privilege-name">AVENGER</h2>
-                <ul class="privilege-features">
-                    <li>Все возможности Titan</li>
-                    <li>Префикс в чате [Avenger]</li>
-                    <li>Возможность создать 7 варпов</li>
-                    <li>Доступ к набору Avenger Kit</li>
-                    <li>Возможность починки предметов</li>
-                </ul>
-                <div class="price">40 рублей</div>
-                <button class="buy-btn" onclick="openPaymentModal('AVENGER', 40)">Купить привилегию</button>
-            </div>
-            
-            <!-- Overlord -->
-            <div class="privilege-card overlord">
-                <h2 class="privilege-name">OVERLORD</h2>
-                <ul class="privilege-features">
-                    <li>Все возможности Avenger</li>
-                    <li>Префикс в чате [Overlord]</li>
-                    <li>Возможность создать 10 варпов</li>
-                    <li>Доступ к набору Overlord Kit</li>
-                    <li>Возможность исцеления</li>
-                </ul>
-                <div class="price">50 рублей</div>
-                <button class="buy-btn" onclick="openPaymentModal('OVERLORD', 50)">Купить привилегию</button>
-            </div>
-            
-            <!-- Magister -->
-            <div class="privilege-card magister">
-                <h2 class="privilege-name">MAGISTER</h2>
-                <ul class="privilege-features">
-                    <li>Все возможности Overlord</li>
-                    <li>Префикс в чате [Magister]</li>
-                    <li>Возможность создать 12 варпов</li>
-                    <li>Доступ к набору Magister Kit</li>
-                    <li>Возможность изменения погоды</li>
-                </ul>
-                <div class="price">60 рублей</div>
-                <button class="buy-btn" onclick="openPaymentModal('MAGISTER', 60)">Купить привилегию</button>
-            </div>
-            
-            <!-- Imperator -->
-            <div class="privilege-card imperator">
-                <h2 class="privilege-name">IMPERATOR</h2>
-                <ul class="privilege-features">
-                    <li>Все возможности Magister</li>
-                    <li>Префикс в чате [Imperator]</li>
-                    <li>Возможность создать 15 варпов</li>
-                    <li>Доступ к набору Imperator Kit</li>
-                    <li>Возможность банить игроков</li>
-                </ul>
-                <div class="price">90 рублей</div>
-                <button class="buy-btn" onclick="openPaymentModal('IMPERATOR', 90)">Купить привилегию</button>
-            </div>
-            
-            <!-- Dragon -->
-            <div class="privilege-card dragon">
-                <h2 class="privilege-name">DRAGON</h2>
-                <ul class="privilege-features">
-                    <li>Все возможности Imperator</li>
-                    <li>Префикс в чате [Dragon]</li>
-                    <li>Возможность создать 20 варпов</li>
-                    <li>Доступ к набору Dragon Kit</li>
-                    <li>Возможность выдавать варны</li>
-                </ul>
-                <div class="price">120 рублей</div>
-                <button class="buy-btn" onclick="openPaymentModal('DRAGON', 120)">Купить привилегию</button>
-            </div>
-            
-            <!-- Cobra -->
-            <div class="privilege-card cobra">
-                <h2 class="privilege-name">COBRA</h2>
-                <ul class="privilege-features">
-                    <li>Все возможности Dragon</li>
-                    <li>Префикс в чате [Cobra]</li>
-                    <li>Возможность создать 25 варпов</li>
-                    <li>Доступ к набору Cobra Kit</li>
-                    <li>Возможность телепортации к любому игроку</li>
-                </ul>
-                <div class="price">140 рублей</div>
-                <button class="buy-btn" onclick="openPaymentModal('COBRA', 140)">Купить привилегию</button>
+    <!-- Главная страница с привилегиями -->
+    <div id="mainPage">
+        <header>
+            <h1>АТЕРНОС СЕРВЕР</h1>
+            <p class="subtitle">Выберите привилегию для максимального игрового опыта</p>
+        </header>
+        
+        <div class="container">
+            <div class="privilege-grid">
+                <!-- Hero -->
+                <div class="privilege-card hero">
+                    <h2 class="privilege-name">HERO</h2>
+                    <ul class="privilege-features">
+                        <li>Доступ к команде /fly</li>
+                        <li>Префикс в чате [Hero]</li>
+                        <li>Возможность создать 3 варпа</li>
+                        <li>Доступ к набору Hero Kit</li>
+                        <li>Увеличенный лимит домов</li>
+                    </ul>
+                    <div class="price">20 рублей</div>
+                    <button class="buy-btn" onclick="goToPayment('HERO', 20)">Купить привилегию</button>
+                </div>
+                
+                <!-- Titan -->
+                <div class="privilege-card titan">
+                    <h2 class="privilege-name">TITAN</h2>
+                    <ul class="privilege-features">
+                        <li>Все возможности Hero</li>
+                        <li>Префикс в чате [Titan]</li>
+                        <li>Возможность создать 5 варпов</li>
+                        <li>Доступ к набору Titan Kit</li>
+                        <li>Возможность телепортации к игрокам</li>
+                    </ul>
+                    <div class="price">30 рублей</div>
+                    <button class="buy-btn" onclick="goToPayment('TITAN', 30)">Купить привилегию</button>
+                </div>
+                
+                <!-- Avenger -->
+                <div class="privilege-card avenger">
+                    <h2 class="privilege-name">AVENGER</h2>
+                    <ul class="privilege-features">
+                        <li>Все возможности Titan</li>
+                        <li>Префикс в чате [Avenger]</li>
+                        <li>Возможность создать 7 варпов</li>
+                        <li>Доступ к набору Avenger Kit</li>
+                        <li>Возможность починки предметов</li>
+                    </ul>
+                    <div class="price">40 рублей</div>
+                    <button class="buy-btn" onclick="goToPayment('AVENGER', 40)">Купить привилегию</button>
+                </div>
+                
+                <!-- Overlord -->
+                <div class="privilege-card overlord">
+                    <h2 class="privilege-name">OVERLORD</h2>
+                    <ul class="privilege-features">
+                        <li>Все возможности Avenger</li>
+                        <li>Префикс в чате [Overlord]</li>
+                        <li>Возможность создать 10 варпов</li>
+                        <li>Доступ к набору Overlord Kit</li>
+                        <li>Возможность исцеления</li>
+                    </ul>
+                    <div class="price">50 рублей</div>
+                    <button class="buy-btn" onclick="goToPayment('OVERLORD', 50)">Купить привилегию</button>
+                </div>
+                
+                <!-- Magister -->
+                <div class="privilege-card magister">
+                    <h2 class="privilege-name">MAGISTER</h2>
+                    <ul class="privilege-features">
+                        <li>Все возможности Overlord</li>
+                        <li>Префикс в чате [Magister]</li>
+                        <li>Возможность создать 12 варпов</li>
+                        <li>Доступ к набору Magister Kit</li>
+                        <li>Возможность изменения погоды</li>
+                    </ul>
+                    <div class="price">60 рублей</div>
+                    <button class="buy-btn" onclick="goToPayment('MAGISTER', 60)">Купить привилегию</button>
+                </div>
+                
+                <!-- Imperator -->
+                <div class="privilege-card imperator">
+                    <h2 class="privilege-name">IMPERATOR</h2>
+                    <ul class="privilege-features">
+                        <li>Все возможности Magister</li>
+                        <li>Префикс в чате [Imperator]</li>
+                        <li>Возможность создать 15 варпов</li>
+                        <li>Доступ к набору Imperator Kit</li>
+                        <li>Возможность банить игроков</li>
+                    </ul>
+                    <div class="price">90 рублей</div>
+                    <button class="buy-btn" onclick="goToPayment('IMPERATOR', 90)">Купить привилегию</button>
+                </div>
+                
+                <!-- Dragon -->
+                <div class="privilege-card dragon">
+                    <h2 class="privilege-name">DRAGON</h2>
+                    <ul class="privilege-features">
+                        <li>Все возможности Imperator</li>
+                        <li>Префикс в чате [Dragon]</li>
+                        <li>Возможность создать 20 варпов</li>
+                        <li>Доступ к набору Dragon Kit</li>
+                        <li>Возможность выдавать варны</li>
+                    </ul>
+                    <div class="price">120 рублей</div>
+                    <button class="buy-btn" onclick="goToPayment('DRAGON', 120)">Купить привилегию</button>
+                </div>
+                
+                <!-- Cobra -->
+                <div class="privilege-card cobra">
+                    <h2 class="privilege-name">COBRA</h2>
+                    <ul class="privilege-features">
+                        <li>Все возможности Dragon</li>
+                        <li>Префикс в чате [Cobra]</li>
+                        <li>Возможность создать 25 варпов</li>
+                        <li>Доступ к набору Cobra Kit</li>
+                        <li>Возможность телепортации к любому игроку</li>
+                    </ul>
+                    <div class="price">140 рублей</div>
+                    <button class="buy-btn" onclick="goToPayment('COBRA', 140)">Купить привилегию</button>
+                </div>
             </div>
         </div>
+        
+        <footer>
+            <p>© 2023 Атернос Сервер. Все права защищены.</p>
+            <p style="margin-top: 0.5rem; color: #777;">По всем вопросам обращайтесь в нашу группу ВК</p>
+        </footer>
     </div>
-    
-    <!-- Модальное окно оплаты -->
-    <div class="modal" id="paymentModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title">Оплата привилегии</h2>
-                <button class="close-btn" onclick="closePaymentModal()">&times;</button>
-            </div>
-            
-            <div class="payment-info">
-                <p>Вы покупаете: <strong id="selectedPrivilege">HERO</strong></p>
-                <p class="payment-amount">Сумма: <span id="paymentAmount">20</span> рублей</p>
-            </div>
-            
-            <form id="paymentForm">
-                <div class="form-group">
-                    <label for="playerNickname">Никнейм в игре *</label>
-                    <input type="text" id="playerNickname" placeholder="Введите ваш ник в Minecraft" required>
-                    <small style="color: #aaa;">Укажите ник, на который нужно выдать привилегию</small>
-                </div>
-                
-                <div class="form-group">
-                    <label for="playerEmail">Email для уведомлений *</label>
-                    <input type="email" id="playerEmail" placeholder="your@email.com" required>
-                </div>
-                
-                <button type="button" class="vk-pay-btn" onclick="processVKPayment()">
-                    Оплатить через VK Pay
-                </button>
-                
-                <div class="form-group" style="text-align: center; margin: 1rem 0;">
-                    <span style="color: #aaa;">или</span>
-                </div>
-                
-                <button type="button" class="pay-btn" onclick="processCardPayment()">
-                    Оплатить банковской картой
-                </button>
-            </form>
-            
-            <div class="success-message" id="successMessage">
-                ✅ Оплата прошла успешно! Привилегия будет выдана в течение 5 минут
-            </div>
-            
-            <div class="error-message" id="errorMessage">
-                ❌ Произошла ошибка при оплате. Попробуйте еще раз
-            </div>
-            
-            <p style="text-align: center; margin-top: 1rem; color: #aaa; font-size: 0.9rem;">
-                После оплаты привилегия автоматически выдается указанному нику
-            </p>
+
+    <!-- Страница оплаты -->
+    <div id="paymentPage" class="payment-page">
+        <div class="payment-header">
+            <h2 class="payment-title">Оплата привилегии</h2>
+            <div class="payment-amount" id="paymentPageAmount">20 рублей</div>
+            <p id="paymentPagePrivilege">HERO</p>
         </div>
-    </div>
-    
-    <footer>
-        <p>© 2025 Атернос Сервер. Все права защищены.</p>
-        <p style="margin-top: 0.5rem; color: #777;">По всем вопросам обращайтесь в нашу группу ВК</p>
-    </footer>
-    
-    <script>
-        let selectedPrivilege = '';
-        let selectedPrice = 0;
         
-        function openPaymentModal(privilege, price) {
-            selectedPrivilege = privilege;
-            selectedPrice = price;
+        <form id="paymentForm">
+            <div class="form-group">
+                <label for="playerNickname">Ваш ник в игре *</label>
+                <input type="text" id="playerNickname" placeholder="Например: Steve123" required>
+            </div>
             
-            document.getElementById('selectedPrivilege').textContent = privilege;
-            document.getElementById('paymentAmount').textContent = price;
-            document.getElementById('successMessage').style.display = 'none';
-            document.getElementById('errorMessage').style.display = 'none';
+            <div class="form-group">
+                <label for="playerEmail">Email для уведомлений *</label>
+                <input type="email" id="playerEmail" placeholder="your@email.com" required>
+            </div>
             
-            document.getElementById('paymentModal').style.display = 'flex';
-        }
-        
-        function closePaymentModal() {
-            document.getElementById('paymentModal').style.display = 'none';
-        }
-        
-       d
+            <div class="payment-methods">
+                <div class="payment-method selected" onclick="selectPaymentMethod('vkpay')">
+                    <div class="method-icon vkpay-icon">VK</div>
+                    <div>
+                        <strong>VK Pay</strong>
+                        <p>Оплата через VK Кошелек</p>
+                    </div>
+                </div>
+                
+                <div class="payment-method" onclick="selectPaymentMethod('card')">
+                    <div class="method-icon card-icon">💳</div>
+                    <div>
+                        <strong>Банковская карта</strong>
+                        <p>Visa, Mastercard, МИР<
