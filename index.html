@@ -3,565 +3,1277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Атернос Сервер - Система привилегий</title>
+    <title>BREND - Модная обувь премиум-класса</title>
     <style>
         :root {
-            --hero: #1e90ff;
-            --titan: #ffd700;
-            --avenger: #32cd32;
-            --overlord: #00ced1;
-            --magister: #ff8c00;
-            --imperator: #dc143c;
-            --dragon: #9370db;
-            --cobra: #7fff00;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #1a1a1a;
         }
         
         body {
-            background: linear-gradient(135deg, #0c0c0c 0%, #1a1a2e 100%);
-            color: #f0f0f0;
-            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--dark-color);
+            line-height: 1.6;
+            font-size: 16px;
         }
         
         header {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 1.5rem;
-            text-align: center;
-            border-bottom: 2px solid #333;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #1e90ff, #9370db);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            color: #aaa;
-            margin-bottom: 1rem;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         .container {
+            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0 10px;
         }
         
-        .privilege-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .privilege-card {
-            background: rgba(30, 30, 46, 0.7);
-            border-radius: 12px;
-            padding: 1.5rem;
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .privilege-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .privilege-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-        }
-        
-        .hero::before { background-color: var(--hero); }
-        .titan::before { background-color: var(--titan); }
-        .avenger::before { background-color: var(--avenger); }
-        .overlord::before { background-color: var(--overlord); }
-        .magister::before { background-color: var(--magister); }
-        .imperator::before { background-color: var(--imperator); }
-        .dragon::before { background-color: var(--dragon); }
-        .cobra::before { background-color: var(--cobra); }
-        
-        .privilege-name {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            font-weight: bold;
-        }
-        
-        .hero .privilege-name { color: var(--hero); }
-        .titan .privilege-name { color: var(--titan); }
-        .avenger .privilege-name { color: var(--avenger); }
-        .overlord .privilege-name { color: var(--overlord); }
-        .magister .privilege-name { color: var(--magister); }
-        .imperator .privilege-name { color: var(--imperator); }
-        .dragon .privilege-name { color: var(--dragon); }
-        .cobra .privilege-name { color: var(--cobra); }
-        
-        .privilege-features {
-            list-style-type: none;
-        }
-        
-        .privilege-features li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        .header-content {
             display: flex;
+            flex-direction: column;
             align-items: center;
         }
         
-        .privilege-features li:last-child {
-            border-bottom: none;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
         }
         
-        .privilege-features li::before {
-            content: '✓';
-            margin-right: 0.5rem;
-            font-weight: bold;
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
         
-        .hero .privilege-features li::before { color: var(--hero); }
-        .titan .privilege-features li::before { color: var(--titan); }
-        .avenger .privilege-features li::before { color: var(--avenger); }
-        .overlord .privilege-features li::before { color: var(--overlord); }
-        .magister .privilege-features li::before { color: var(--magister); }
-        .imperator .privilege-features li::before { color: var(--imperator); }
-        .dragon .privilege-features li::before { color: var(--dragon); }
-        .cobra .privilege-features li::before { color: var(--cobra); }
+        nav ul li {
+            margin: 0.3rem 0.7rem;
+        }
         
-        .price {
-            margin-top: 1rem;
-            font-size: 1.2rem;
-            font-weight: bold;
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 3rem 0;
             text-align: center;
-            padding: 0.7rem;
-            border-radius: 6px;
-            background: rgba(0, 0, 0, 0.3);
         }
         
-        .hero .price { color: var(--hero); border: 1px solid var(--hero); }
-        .titan .price { color: var(--titan); border: 1px solid var(--titan); }
-        .avenger .price { color: var(--avenger); border: 1px solid var(--avenger); }
-        .overlord .price { color: var(--overlord); border: 1px solid var(--overlord); }
-        .magister .price { color: var(--magister); border: 1px solid var(--magister); }
-        .imperator .price { color: var(--imperator); border: 1px solid var(--imperator); }
-        .dragon .price { color: var(--dragon); border: 1px solid var(--dragon); }
-        .cobra .price { color: var(--cobra); border: 1px solid var(--cobra); }
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            padding: 0 10px;
+        }
         
-        .buy-btn {
-            display: block;
-            width: 100%;
-            padding: 0.8rem;
-            margin-top: 1rem;
-            border: none;
-            border-radius: 6px;
+        .hero p {
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            padding: 0 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
             font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
             cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
+            border: none;
         }
         
-        .hero .buy-btn { background: var(--hero); color: white; }
-        .titan .buy-btn { background: var(--titan); color: black; }
-        .avenger .buy-btn { background: var(--avenger); color: white; }
-        .overlord .buy-btn { background: var(--overlord); color: white; }
-        .magister .buy-btn { background: var(--magister); color: white; }
-        .imperator .buy-btn { background: var(--imperator); color: white; }
-        .dragon .buy-btn { background: var(--dragon); color: white; }
-        .cobra .buy-btn { background: var(--cobra); color: black; }
-        
-        .buy-btn:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
         }
         
-        /* Стили для страницы оплаты */
-        .payment-page {
-            display: none;
-            max-width: 500px;
-            margin: 2rem auto;
-            background: rgba(30, 30, 46, 0.7);
-            border-radius: 12px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .products {
+            padding: 2rem 0;
         }
         
-        .payment-header {
+        .section-title {
             text-align: center;
             margin-bottom: 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 1rem;
-        }
-        
-        .payment-title {
             font-size: 1.8rem;
-            color: #1e90ff;
-            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+            padding: 0 10px;
         }
         
-        .payment-amount {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ffd700;
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
         }
         
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #aaa;
-            font-weight: bold;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 0.8rem;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 6px;
-            color: white;
-            font-size: 1rem;
-        }
-        
-        .form-group input:focus {
-            outline: none;
-            border-color: #1e90ff;
-        }
-        
-        .payment-methods {
-            margin: 2rem 0;
-        }
-        
-        .payment-method {
-            display: flex;
-            align-items: center;
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.3);
+        .product-card {
+            border: 1px solid #ddd;
             border-radius: 8px;
-            margin-bottom: 1rem;
-            cursor: pointer;
-            transition: background 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            max-width: 350px;
+            margin: 0 auto;
         }
         
-        .payment-method:hover {
-            background: rgba(0, 0, 0, 0.5);
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .payment-method.selected {
-            background: rgba(30, 144, 255, 0.2);
-            border-color: #1e90ff;
-        }
-        
-        .method-icon {
-            width: 40px;
-            height: 40px;
-            margin-right: 1rem;
+        .product-image {
+            height: 200px;
+            background-color: #f5f5f5;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
-            font-weight: bold;
-            font-size: 1.2rem;
         }
         
-        .vkpay-icon {
-            background: #4a76a8;
-            color: white;
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
         }
         
-        .card-icon {
-            background: #ff6b35;
-            color: white;
-        }
-        
-        .qiwi-icon {
-            background: #ff8c00;
-            color: white;
-        }
-        
-        .pay-btn {
-            display: block;
-            width: 100%;
+        .product-info {
             padding: 1rem;
-            background: #1e90ff;
-            color: white;
-            border: none;
-            border-radius: 8px;
+        }
+        
+        .product-title {
             font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-            margin-top: 1rem;
-        }
-        
-        .pay-btn:hover {
-            background: #1c86ee;
-        }
-        
-        .back-btn {
-            display: block;
-            width: 100%;
-            padding: 0.8rem;
-            background: transparent;
-            color: #aaa;
-            border: 1px solid #aaa;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 1rem;
-            text-align: center;
-            text-decoration: none;
-        }
-        
-        .back-btn:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-        
-        .success-page {
-            display: none;
-            max-width: 500px;
-            margin: 2rem auto;
-            background: rgba(30, 30, 46, 0.7);
-            border-radius: 12px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
-        
-        .success-icon {
-            font-size: 4rem;
-            color: #32cd32;
-            margin-bottom: 1rem;
-        }
-        
-        .vk-wallet-info {
-            background: rgba(74, 118, 168, 0.2);
-            border: 1px solid #4a76a8;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1.5rem 0;
-            text-align: left;
-        }
-        
-        .instructions {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-            text-align: left;
-        }
-        
-        .instructions ol {
-            margin-left: 1.5rem;
-            margin-top: 0.5rem;
-        }
-        
-        .instructions li {
             margin-bottom: 0.5rem;
         }
         
-        footer {
-            text-align: center;
-            padding: 2rem;
-            margin-top: 2rem;
-            background: rgba(0, 0, 0, 0.8);
-            border-top: 1px solid #333;
+        .product-price {
+            font-weight: bold;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
         }
         
-        @media (max-width: 768px) {
-            .privilege-grid {
-                grid-template-columns: 1fr;
+        .about {
+            padding: 2rem 0;
+            background-color: #f9f9f9;
+        }
+        
+        .about p {
+            padding: 0 15px;
+            font-size: 0.95rem;
+        }
+        
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 2rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-column {
+            text-align: center;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+        }
+
+        /* Галерея */
+        .gallery-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            overflow: auto;
+            padding: 20px 0;
+        }
+
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .gallery-title {
+            color: white;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            aspect-ratio: 1 / 1;
+            background-color: #222;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 5px 20px rgba(255,255,255,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover img {
+            opacity: 0.8;
+        }
+
+        .gallery-item-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-item-caption {
+            transform: translateY(0);
+        }
+
+        .close-gallery {
+            position: fixed;
+            top: 25px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+            transition: color 0.3s;
+        }
+
+        .close-gallery:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Модальное окно для увеличенного изображения */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1002;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.95);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: zoom 0.3s;
+        }
+
+        @keyframes zoom {
+            from {transform: translateY(-50%) scale(0.9); opacity: 0}
+            to {transform: translateY(-50%) scale(1); opacity: 1}
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: #f1f1f1;
+            font-size: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 1003;
+        }
+
+        .close-modal:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Навигация по галерее */
+        .gallery-nav {
+            position: fixed;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-sizing: border-box;
+            z-index: 1001;
+        }
+
+        .gallery-nav-btn {
+            color: white;
+            font-size: 50px;
+            cursor: pointer;
+            background: rgba(0,0,0,0.5);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .gallery-nav-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        /* Загрузчик */
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--primary-color);
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-circle {
+            width: 20px;
+            height: 20px;
+            margin: 0 10px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            animation: bounce 0.6s infinite alternate;
+        }
+
+        .loader-circle:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loader-circle:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            to {
+                transform: translateY(-20px);
+                opacity: 0.5;
+            }
+        }
+
+        /* Корзина */
+        .cart-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background-color: white;
+            z-index: 1000;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .cart-title {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-content {
+            padding: 1rem;
+        }
+
+        .cart-items {
+            margin-bottom: 1rem;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 1rem;
+            border-radius: 4px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            margin: 0 0 0.5rem 0;
+            font-size: 1rem;
+        }
+
+        .cart-item-price {
+            margin: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #999;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background-color: #c0392b;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 2rem 0;
+            color: #666;
+        }
+
+        .cart-icon {
+            position: relative;
+            margin-left: auto;
+            margin-right: 1rem;
+            cursor: pointer;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+
+        /* Медиа-запросы для планшетов и десктопов */
+        @media (min-width: 600px) {
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
             }
             
-            h1 {
-                font-size: 2rem;
+            .logo {
+                margin-bottom: 0;
             }
             
-            .container {
-                padding: 1rem;
+            nav ul li {
+                margin-left: 1rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header-nav {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 4rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .product-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+                text-align: left;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(5, 1fr);
             }
         }
     </style>
 </head>
 <body>
-    <!-- Главная страница с привилегиями -->
-    <div id="mainPage">
-        <header>
-            <h1>АТЕРНОС СЕРВЕР</h1>
-            <p class="subtitle">Выберите привилегию для максимального игрового опыта</p>
-        </header>
-        
-        <div class="container">
-            <div class="privilege-grid">
-                <!-- Hero -->
-                <div class="privilege-card hero">
-                    <h2 class="privilege-name">HERO</h2>
-                    <ul class="privilege-features">
-                        <li>Доступ к команде /fly</li>
-                        <li>Префикс в чате [Hero]</li>
-                        <li>Возможность создать 3 варпа</li>
-                        <li>Доступ к набору Hero Kit</li>
-                        <li>Увеличенный лимит домов</li>
-                    </ul>
-                    <div class="price">20 рублей</div>
-                    <button class="buy-btn" onclick="goToPayment('HERO', 20)">Купить привилегию</button>
-                </div>
-                
-                <!-- Titan -->
-                <div class="privilege-card titan">
-                    <h2 class="privilege-name">TITAN</h2>
-                    <ul class="privilege-features">
-                        <li>Все возможности Hero</li>
-                        <li>Префикс в чате [Titan]</li>
-                        <li>Возможность создать 5 варпов</li>
-                        <li>Доступ к набору Titan Kit</li>
-                        <li>Возможность телепортации к игрокам</li>
-                    </ul>
-                    <div class="price">30 рублей</div>
-                    <button class="buy-btn" onclick="goToPayment('TITAN', 30)">Купить привилегию</button>
-                </div>
-                
-                <!-- Avenger -->
-                <div class="privilege-card avenger">
-                    <h2 class="privilege-name">AVENGER</h2>
-                    <ul class="privilege-features">
-                        <li>Все возможности Titan</li>
-                        <li>Префикс в чате [Avenger]</li>
-                        <li>Возможность создать 7 варпов</li>
-                        <li>Доступ к набору Avenger Kit</li>
-                        <li>Возможность починки предметов</li>
-                    </ul>
-                    <div class="price">40 рублей</div>
-                    <button class="buy-btn" onclick="goToPayment('AVENGER', 40)">Купить привилегию</button>
-                </div>
-                
-                <!-- Overlord -->
-                <div class="privilege-card overlord">
-                    <h2 class="privilege-name">OVERLORD</h2>
-                    <ul class="privilege-features">
-                        <li>Все возможности Avenger</li>
-                        <li>Префикс в чате [Overlord]</li>
-                        <li>Возможность создать 10 варпов</li>
-                        <li>Доступ к набору Overlord Kit</li>
-                        <li>Возможность исцеления</li>
-                    </ul>
-                    <div class="price">50 рублей</div>
-                    <button class="buy-btn" onclick="goToPayment('OVERLORD', 50)">Купить привилегию</button>
-                </div>
-                
-                <!-- Magister -->
-                <div class="privilege-card magister">
-                    <h2 class="privilege-name">MAGISTER</h2>
-                    <ul class="privilege-features">
-                        <li>Все возможности Overlord</li>
-                        <li>Префикс в чате [Magister]</li>
-                        <li>Возможность создать 12 варпов</li>
-                        <li>Доступ к набору Magister Kit</li>
-                        <li>Возможность изменения погоды</li>
-                    </ul>
-                    <div class="price">60 рублей</div>
-                    <button class="buy-btn" onclick="goToPayment('MAGISTER', 60)">Купить привилегию</button>
-                </div>
-                
-                <!-- Imperator -->
-                <div class="privilege-card imperator">
-                    <h2 class="privilege-name">IMPERATOR</h2>
-                    <ul class="privilege-features">
-                        <li>Все возможности Magister</li>
-                        <li>Префикс в чате [Imperator]</li>
-                        <li>Возможность создать 15 варпов</li>
-                        <li>Доступ к набору Imperator Kit</li>
-                        <li>Возможность банить игроков</li>
-                    </ul>
-                    <div class="price">90 рублей</div>
-                    <button class="buy-btn" onclick="goToPayment('IMPERATOR', 90)">Купить привилегию</button>
-                </div>
-                
-                <!-- Dragon -->
-                <div class="privilege-card dragon">
-                    <h2 class="privilege-name">DRAGON</h2>
-                    <ul class="privilege-features">
-                        <li>Все возможности Imperator</li>
-                        <li>Префикс в чате [Dragon]</li>
-                        <li>Возможность создать 20 варпов</li>
-                        <li>Доступ к набору Dragon Kit</li>
-                        <li>Возможность выдавать варны</li>
-                    </ul>
-                    <div class="price">120 рублей</div>
-                    <button class="buy-btn" onclick="goToPayment('DRAGON', 120)">Купить привилегию</button>
-                </div>
-                
-                <!-- Cobra -->
-                <div class="privilege-card cobra">
-                    <h2 class="privilege-name">COBRA</h2>
-                    <ul class="privilege-features">
-                        <li>Все возможности Dragon</li>
-                        <li>Префикс в чате [Cobra]</li>
-                        <li>Возможность создать 25 варпов</li>
-                        <li>Доступ к набору Cobra Kit</li>
-                        <li>Возможность телепортации к любому игроку</li>
-                    </ul>
-                    <div class="price">140 рублей</div>
-                    <button class="buy-btn" onclick="goToPayment('COBRA', 140)">Купить привилегию</button>
-                </div>
-            </div>
-        </div>
-        
-        <footer>
-            <p>© 2023 Атернос Сервер. Все права защищены.</p>
-            <p style="margin-top: 0.5rem; color: #777;">По всем вопросам обращайтесь в нашу группу ВК</p>
-        </footer>
+    <!-- Загрузчик -->
+    <div class="loader">
+        <div class="loader-circle"></div>
+        <div class="loader-circle"></div>
+        <div class="loader-circle"></div>
     </div>
 
-    <!-- Страница оплаты -->
-    <div id="paymentPage" class="payment-page">
-        <div class="payment-header">
-            <h2 class="payment-title">Оплата привилегии</h2>
-            <div class="payment-amount" id="paymentPageAmount">20 рублей</div>
-            <p id="paymentPagePrivilege">HERO</p>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="index.html" class="logo">MELISIUM</a>
+                <nav>
+                    <ul>
+                        <li><a href="#">Главная</a></li>
+                        <li><a href="#" id="menShoesLink">Мужская обувь</a></li>
+                        <li><a href="#" id="womenShoesLink">Женская обувь</a></li>
+                        <li><a href="#">Новая коллекция</a></li>
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li class="cart-icon" id="cartIcon">
+                            🛒
+                            <span class="cart-count" id="cartCount">0</span>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </div>
-        
-        <form id="paymentForm">
-            <div class="form-group">
-                <label for="playerNickname">Ваш ник в игре *</label>
-                <input type="text" id="playerNickname" placeholder="Например: Steve123" required>
-            </div>
-            
-            <div class="form-group">
-                <label for="playerEmail">Email для уведомлений *</label>
-                <input type="email" id="playerEmail" placeholder="your@email.com" required>
-            </div>
-            
-            <div class="payment-methods">
-                <div class="payment-method selected" onclick="selectPaymentMethod('vkpay')">
-                    <div class="method-icon vkpay-icon">VK</div>
-                    <div>
-                        <strong>VK Pay</strong>
-                        <p>Оплата через VK Кошелек</p>
+    </header>
+    
+    <section class="hero">
+        <div class="container">
+            <h1>Новая коллекция BREND</h1>
+            <p>Стиль, комфорт и инновационные технологии в каждой паре</p>
+            <button id="viewCollectionBtn" class="btn">Смотреть коллекцию</button>
+        </div>
+    </section>
+    
+    <section class="products">
+        <div class="container">
+            <h2 class="section-title">Популярные модели</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="1.jpg" alt="Модель PRIMIATA">
+                    </div>               
+                    <div class="product-info">
+                        <h3 class="product-title">BREND</h3>
+                        <p>Стильные кроссовки для повседневной носки</p>
+                        <div class="product-price">12 990 ₽</div>
+                        <button class="btn add-to-cart" data-id="1" data-title="BREND" data-price="12990" data-image="1.jpg">В корзину</button>
                     </div>
                 </div>
                 
-                <div class="payment-method" onclick="selectPaymentMethod('card')">
-                    <div class="method-icon card-icon">💳</div>
-                    <div>
-                        <strong>Банковская карта</strong>
-                        <p>Visa, Mastercard, МИР<
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="2.jpg" alt="Модель BREND">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">BREND</h3>
+                        <p>Премиальные кожаные кроссовки</p>
+                        <div class="product-price">15 990 ₽</div>
+                        <button class="btn add-to-cart" data-id="2" data-title="BREND" data-price="15990" data-image="2.jpg">В корзину</button>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="3.jpg" alt="Модель BREND">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">BREND</h3>
+                        <p>Спортивные кроссовки с амортизацией</p>
+                        <div class="product-price">13 490 ₽</div>
+                        <button class="btn add-to-cart" data-id="3" data-title="BREND" data-price="13490" data-image="3.jpg">В корзину</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="about">
+        <div class="container">
+            <h2 class="section-title">О бренде BREND</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p>BREND - это синтез итальянского качества и современного дизайна. Каждая пара обуви создается с вниманием к деталям и заботой о комфорте наших клиентов.</p>
+                <p>Мы используем только premium материалы и инновационные технологии производства, чтобы предложить вам обувь, которая будет радовать вас долгие годы.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>BREND</h3>
+                    <p>Премиальная обувь для тех, кто ценит качество и стиль.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Каталог</h3>
+                    <ul>
+                        <li><a href="#">Мужская обувь</a></li>
+                        <li><a href="#">Женская обувь</a></li>
+                        <li><a href="#">Новая коллекция</a></li>
+                        <li><a href="#">Распродажа</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Помощь</h3>
+                    <ul>
+                        <li><a href="#">Доставка и оплата</a></li>
+                        <li><a href="#">Возврат и обмен</a></li>
+                        <li><a href="#">Размеры</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li>Телефон: +7 (123) 456-78-90</li>
+                        <li>Email: info@BREND.ru</li>
+                        <li>Ростов-на-Дону, ул. Садовая, 124</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 BREND. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Корзина -->
+    <div id="cartOverlay" class="cart-overlay">
+        <div class="cart-header">
+            <h3 class="cart-title">Ваша корзина</h3>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-content">
+            <div class="cart-items" id="cartItems">
+                <!-- Товары будут добавляться сюда -->
+                <div class="empty-cart">Ваша корзина пуста</div>
+            </div>
+            <div class="cart-total">
+                <span>Итого:</span>
+                <span id="cartTotal">0 ₽</span>
+            </div>
+            <button class="checkout-btn">Оформить заказ</button>
+        </div>
+    </div>
+
+    <!-- Галерея коллекции -->
+    <div id="galleryOverlay" class="gallery-overlay">
+        <span class="close-gallery">&times;</span>
+        <div class="gallery-container">
+            <h2 class="gallery-title">Коллекция BREND 2025</h2>
+            <div class="gallery-grid">
+                <!-- 21 изображение коллекции -->
+                <div class="gallery-item">
+                    <img src="1.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Urban Classic</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="2.jpg" alt="BREND модель Leather Premium" class="gallery-img">
+                    <div class="gallery-item-caption">Leather Premium</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="3.jpg" alt="BREND модель Sport Pro" class="gallery-img">
+                    <div class="gallery-item-caption">Sport Pro</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="4.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Street Style</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="5.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Winter Edition</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="6.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Air Comfort</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="7.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Runner X</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="8.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Classic Black</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="9.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">White Edition</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="10.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Retro Style</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="11.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Future Tech</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="12.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">City Walk</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="13.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Premium Gold</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="14.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Silver Line</div>
+                </div>
+                <div class="gallery-item">
+                   <img src="15.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Night Vision</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="16.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Summer Breeze</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="17.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Urban Explorer</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="18.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Classic Brown</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="19.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Sport Elite</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="20.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Limited Edition</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="21.jpg" alt="BREND модель Urban Classic" class="gallery-img">
+                    <div class="gallery-item-caption">Signature Collection</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Галерея мужской обуви -->
+    <div id="menShoesGallery" class="gallery-overlay">
+        <span class="close-gallery">&times;</span>
+        <div class="gallery-container">
+            <h2 class="gallery-title">Мужская коллекция BREND 2025</h2>
+            <div class="gallery-grid">
+                <!-- 10 изображений мужской обуви -->
+                <div class="gallery-item">
+                    <img src="22.jpg" alt="BREND мужская модель Classic Black" class="gallery-img">
+                    <div class="gallery-item-caption">Classic Black</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="23.jpg" alt="BREND мужская модель Executive Brown" class="gallery-img">
+                    <div class="gallery-item-caption">Executive Brown</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="24.jpg" alt="BREND мужская модель Sport Pro" class="gallery-img">
+                    <div class="gallery-item-caption">Sport Pro</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="25.jpg" alt="BREND мужская модель Urban Walker" class="gallery-img">
+                    <div class="gallery-item-caption">Urban Walker</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="26.jpg" alt="BREND мужская модель Leather Premium" class="gallery-img">
+                    <div class="gallery-item-caption">Leather Premium</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="27.jpg" alt="BREND мужская модель Weekend" class="gallery-img">
+                    <div class="gallery-item-caption">Weekend</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="28.jpg" alt="BREND мужская модель Business Class" class="gallery-img">
+                    <div class="gallery-item-caption">Business Class</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="29.jpg" alt="BREND мужская модель Street Style" class="gallery-img">
+                    <div class="gallery-item-caption">Street Style</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="30.jpg" alt="BREND мужская модель Runner X" class="gallery-img">
+                    <div class="gallery-item-caption">Runner X</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="31.jpg" alt="BREND мужская модель Limited Edition" class="gallery-img">
+                    <div class="gallery-item-caption">Limited Edition</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Галерея женской обуви -->
+    <div id="womenShoesGallery" class="gallery-overlay">
+        <span class="close-gallery">&times;</span>
+        <div class="gallery-container">
+            <h2 class="gallery-title">Женская коллекция BREND 2025</h2>
+            <div class="gallery-grid">
+                <!-- 10 изображений женской обуви -->
+                <div class="gallery-item">
+                    <img src="32.jpg" alt="BREND женская модель Elegant Black" class="gallery-img">
+                    <div class="gallery-item-caption">Elegant Black</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="33.jpg" alt="BREND женская модель Fashion Heels" class="gallery-img">
+                    <div class="gallery-item-caption">Fashion Heels</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="34.jpg" alt="BREND женская модель Comfort Walk" class="gallery-img">
+                    <div class="gallery-item-caption">Comfort Walk</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="35.jpg" alt="BREND женская модель Summer Sandals" class="gallery-img">
+                    <div class="gallery-item-caption">Summer Sandals</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="36.jpg" alt="BREND женская модель Classic Pumps" class="gallery-img">
+                    <div class="gallery-item-caption">Classic Pumps</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="37.jpg" alt="BREND женская модель Sporty Chic" class="gallery-img">
+                    <div class="gallery-item-caption">Sporty Chic</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="38.jpg" alt="BREND женская модель Evening Glam" class="gallery-img">
+                    <div class="gallery-item-caption">Evening Glam</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="39.jpg" alt="BREND женская модель Casual Comfort" class="gallery-img">
+                    <div class="gallery-item-caption">Casual Comfort</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="40.jpg" alt="BREND женская модель Winter Boots" class="gallery-img">
+                    <div class="gallery-item-caption">Winter Boots</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="41.jpg" alt="BREND женская модель Limited Edition" class="gallery-img">
+                    <div class="gallery-item-caption">Limited Edition</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно для увеличенного изображения -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <div class="gallery-nav">
+            <div class="gallery-nav-btn prev-btn">&#10094;</div>
+            <div class="gallery-nav-btn next-btn">&#10095;</div>
+        </div>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        // Загрузчик страницы
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.querySelector('.loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // Галерея
+        let galleryImages = document.querySelectorAll('.gallery-img');
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+        const closeModal = document.querySelector('.close-modal');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        let currentImageIndex = 0;
+
+        // Открытие основной галереи
+        document.getElementById('viewCollectionBtn').addEventListener('click', function() {
+            document.getElementById('galleryOverlay').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Открытие галереи мужской обуви
+        document.getElementById('menShoesLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('menShoesGallery').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Открытие галереи женской обуви
+        document.getElementById('womenShoesLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('womenShoesGallery').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Закрытие галерей
+        document.querySelectorAll('.close-gallery').forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                this.closest('.gallery-overlay').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Закрытие галерей при клике вне контента
+        document.querySelectorAll('.gallery-overlay').forEach(gallery => {
+            gallery.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Открытие модального окна с увеличенным изображением
+        function setupGalleryImages(galleryContainer) {
+            const images = galleryContainer.querySelectorAll('.gallery-img');
+            
+            images.forEach((img, index) => {
+                img.addEventListener('click', function() {
+                    modal.style.display = 'block';
+                    modalImg.src = this.src;
+                    modalImg.alt = this.alt;
+                    currentImageIndex = index;
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Обновляем массив изображений для навигации
+                    galleryImages = images;
+                });
+            });
+        }
+
+        // Инициализация галерей
+        setupGalleryImages(document.getElementById('galleryOverlay'));
+        setupGalleryImages(document.getElementById('menShoesGallery'));
+        setupGalleryImages(document.getElementById('womenShoesGallery'));
+
+        // Закрытие модального окна
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Закрытие модального окна при клике вне изображения
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Навигация по галерее в модальном окне
+        function showImage(index) {
+            if (index >= galleryImages.length) {
+                currentImageIndex = 0;
+            } else if (index < 0) {
+                currentImageIndex = galleryImages.length - 1;
+            } else {
+                currentImageIndex = index;
+            }
+            
+            const img = galleryImages[currentImageIndex];
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+        }
+
+        nextBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showImage(currentImageIndex + 1);
+        });
+
+        prevBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            showImage(currentImageIndex - 1);
+        });
+
+        // Навигация с помощью клавиатуры
+        document.addEventListener('keydown', function(e) {
+            if (modal.style.display === 'block') {
+                if (e.key === 'ArrowRight') {
+                    showImage(currentImageIndex + 1);
+                } else if (e.key === 'ArrowLeft') {
+                    showImage(currentImageIndex - 1);
+                } else if (e.key === 'Escape') {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+
+        // Корзина
+        const cartOverlay = document.getElementById('cartOverlay');
+        const cartIcon = document.getElementById('cartIcon');
+        const closeCart = document.querySelector('.close-cart');
+        const cartItems = document.getElementById('cartItems');
+        const cartTotal = document.getElementById('cartTotal');
+        const cartCount = document.getElementById('cartCount');
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        const checkoutBtn = document.querySelector('.checkout-btn');
+
+        let cart = [];
+
+        // Открытие корзины
+        cartIcon.addEventListener('click', function() {
+            cartOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+
+        // Закрытие корзины
+        closeCart.addEventListener('click', function() {
+            cartOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Закрытие корзины при клике вне ее области
+        cartOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Добавление товара в корзину
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                const title = this.getAttribute('data-title');
+                const price = parseInt(this.getAttribute('data-price'));
+                const image = this.getAttribute('data-image');
+                
+                addToCart(id, title, price, image);
+                
+                // Анимация кнопки
+                this.textContent = 'Добавлено!';
+                this.style.backgroundColor = '#27ae60';
+                setTimeout(() => {
+                    this.textContent = 'В корзину';
+                    this.style.backgroundColor = '';
+                }, 1500);
+            });
+        });
+
+        // Функция добавления в корзину
+        function addToCart(id, title, price, image) {
+            const existingItem = cart.find(item => item.id === id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id,
+                    title,
+                    price,
+                    image,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+        }
+
+        // Удаление товара из корзины
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+        }
+
+        // Обновление корзины
+        function updateCart() {
+            // Обновляем количество товаров в иконке корзины
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Обновляем содержимое корзины
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart">Ваша корзина пуста</div>';
+            } else {
+                cartItems.innerHTML = '';
+                cart.forEach(item => {
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+                    itemElement.innerHTML = `
+                        <img src="${item.image}" alt="${item.title}" class="cart-item-image">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.title}</h4>
+                            <p class="cart-item-price">${formatPrice(item.price)}</p>
+                            <p>Количество: ${item.quantity}</p>
+                        </div>
+                        <button class="remove-item" data-id="${item.id}">✕</button>
+                    `;
+                    cartItems.appendChild(itemElement);
+                });
+                
+                // Добавляем обработчики событий для кнопок удаления
+                document.querySelectorAll('.remove-item').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const id = this.getAttribute('data-id');
+                        removeFromCart(id);
+                    });
+                });
+            }
+            
+            // Обновляем общую сумму
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = formatPrice(total);
+        }
+
+        // Форматирование цены
+        function formatPrice(price) {
+            return new Intl.NumberFormat('ru-RU').format(price) + ' ₽';
+        }
+
+        // Оформление заказа
+        checkoutBtn.addEventListener('click', function() {
+            if (cart.length === 0) {
+                alert('Ваша корзина пуста!');
+                return;
+            }
+            
+            alert('Спасибо за заказ! Мы свяжемся с вами в ближайшее время для подтверждения.');
+            cart = [];
+            updateCart();
+            cartOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        // Инициализация корзины
+        updateCart();
+    </script>
+</body>
+</html>
